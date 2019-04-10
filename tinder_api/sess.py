@@ -128,9 +128,4 @@ class Profile(object):
 
 
 if __name__ == '__main__':
-    sess = Profile()
-    print(sess.meta)
-    #LA
-    #print(sess.change_location(34.0522, -118.2437))
-    #for r in sess.yield_usersv2():
-    #    print(r.name)
+    pass
