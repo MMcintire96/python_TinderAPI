@@ -74,7 +74,7 @@ class UserModel(object):
 
     @property
     def bio(self):
-        return self.data['bio'] if bio in self.data else None
+        return self.data['bio'] if 'bio' in self.data else None
 
     @property
     def name(self):
@@ -113,21 +113,30 @@ class UserModel(object):
     @property
     def jobs(self):
         if 'jobs' in self.data and len(self.data['jobs']) > 0:
-            job_loco = self.data['jobs'][0]['company']['name']
-            job_title = self.data['jobs'][0]['title']['name']
-            return [job_title + ' @ ' + job_loco]
+            try:
+                job_loco = self.data['jobs'][0]['company']['name']
+                job_title = self.data['jobs'][0]['title']['name']
+                return [job_title + ' @ ' + job_loco]
+            except Exception as e:
+                return None
         return None
 
     @property
     def school_name(self):
         if 'schools' in self.data:
-            return self.data['schools'][0]['name']
+            try:
+                return self.data['schools'][0]['name']
+            except Exception as e:
+                return None
         return None
 
     @property
     def school_id(self):
-        if 'schools' in self.data and 'id' in self.data['schools'][0]:
-            return self.data['schools'][0]['id']
+        if 'schools' in self.data:
+            try:
+                return self.data['schools'][0]['id']
+            except Exception as e:
+                return None
         return None
 
     @property
@@ -179,4 +188,7 @@ class UserModel(object):
 
 
 if __name__ == '__main__':
-    pass
+    #Mackenzie
+    m = UserModel('5c95570618eb8411001ab5bf')
+    print(m.instagram_username)
+    #print(json.dumps(m.data, indent=4), file=open('test.txt','w'))
