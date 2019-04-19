@@ -188,7 +188,4 @@ class UserModel(object):
 
 
 if __name__ == '__main__':
-    #Mackenzie
-    m = UserModel('5c95570618eb8411001ab5bf')
-    print(m.instagram_username)
-    #print(json.dumps(m.data, indent=4), file=open('test.txt','w'))
+    pass
