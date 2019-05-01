@@ -12,47 +12,46 @@ from tinder_api import config
 
 class UserModel(object):
     def __init__(self, u_id):
-        self.sess = sess.Profile()
+        self.me = sess.Profile()
         self.id = self.reshape_id(u_id)
         self.data = self.get_data()
         self.match_data = self.get_match_data(u_id)
 
     def get_data(self):
-        r = self.sess.get('/user/{}'.format(self.id))
+        r = sess.Profile().get('/user/{}'.format(self.id))
         return r['results']
 
     def like(self):
-        r = self.sess.get('/like/{}'.format(self.id))
+        r = sess.Profile().get('/like/{}'.format(self.id))
         return r['match']
 
     def super_like(self):
-        r = self.sess.post('/like/{}/super'.format(self.id), {})
+        r = sess.Profile().post('/like/{}/super'.format(self.id), {})
         return r['match']
 
     def dislike(self):
-        r = self.sess.get('/pass/{}'.format(self.id))
+        r = sess.Profile().get('/pass/{}'.format(self.id))
         return 'passed'
 
     def report(self, cause, text=''):
-        r = self.sess.post('/report/{}'.format(self.id),
+        r = sess.Profile().post('/report/{}'.format(self.id),
                 {"cause": cause, "text": text})
         return r
 
     def get_match_data(self, u_id):
-        for match in self.sess.list_matches():
-            if match['participants'][0] == u_id:
-                self.match_id = match['_id']
-                self.is_match = True
-                return match
-            else:
-                self.match_id = None
-                self.is_match = False
-                self.match_data = None
+        if self.is_match is True:
+            self.match_id = u_id
+            return [x for x in self.me.list_matches() if x['_id'] == u_id][0]
+        else:
+            self.match_id = None
+            self.match_data = None
 
     def reshape_id(self, u_id):
-        if self.sess.id in u_id:
-            return u_id.replace(self.sess.id, '')
+        if self.me.id in u_id:
+            self.is_match = True
+            return u_id.replace(self.me.id, '')
         else:
+            self.is_match = False
             return u_id
 
     def message(self, body):
@@ -141,9 +140,8 @@ class UserModel(object):
 
     @property
     def schools(self):
-        # get this working?
-        #return school_dict
         pass
+        #return school_dict
 
     @property
     def ping_time(self):

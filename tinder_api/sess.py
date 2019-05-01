@@ -1,12 +1,14 @@
 import json
+#testing
+from datetime import datetime
 
 import requests
 
 from tinder_api import config
 from tinder_api import user_model
 
-
 class Profile(object):
+
     def __init__(self):
         self.api_base = config.host
         self.data = self.get('/profile')
