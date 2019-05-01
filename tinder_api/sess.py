@@ -2,8 +2,8 @@ import json
 
 import requests
 
-import config
-import user_model
+from tinder_api import config
+from tinder_api import user_model
 
 
 class Profile(object):

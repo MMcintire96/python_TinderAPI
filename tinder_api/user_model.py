@@ -6,8 +6,8 @@ import dateutil.parser
 import requests
 from bs4 import BeautifulSoup
 
-import sess
-import config
+from tinder_api import sess
+from tinder_api import config
 
 
 class UserModel(object):
@@ -142,7 +142,8 @@ class UserModel(object):
     @property
     def schools(self):
         # get this working?
-        return school_dict
+        #return school_dict
+        pass
 
     @property
     def ping_time(self):
