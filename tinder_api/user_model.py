@@ -140,7 +140,6 @@ class UserModel(object):
 
     @property
     def schools(self):
-        # get this working?
         pass
         #return school_dict
 
