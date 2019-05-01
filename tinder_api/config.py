@@ -2,7 +2,7 @@ import json
 
 import requests
 
-import tinder_api.utils.fb_auth
+from tinder_api.utils import fb_auth
 
 fb_email = "fb_name"
 fb_password = "fb_pass"
