@@ -6,8 +6,8 @@ import dateutil.parser
 import requests
 from bs4 import BeautifulSoup
 
-import tinder_api as sess
-import tinder_api.config as config
+import sess
+import config
 
 
 class UserModel(object):

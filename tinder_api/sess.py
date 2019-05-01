@@ -2,8 +2,8 @@ import json
 
 import requests
 
-import tinder_api.config as config
-import tinder_api.user_model as user_model
+import config
+import user_model
 
 
 class Profile(object):
