@@ -1,16 +1,14 @@
-import json
+#from tinder_api.utils import fb_auth
 
-import requests
 
-from tinder_api.utils import fb_auth
-
-fb_email = "fb_name"
-fb_password = "fb_pass"
+# Depreciated from facebook v2 changes
+#fb_email = "fb_name"
+#fb_password = "fb_pass"
 #fb_auth_token = fb_auth.get_fb_access_token(fb_email, fb_password)
 #fb_user_id = fb_auth.get_fb_id(fb_auth_token)
 
-tinder_token = "YOUR TOKEN HERE"
-
+tinder_token = "b90943fd-39a1-404d-bfa0-2a4731c36105"
+host = 'https://api.gotinder.com'
 headers = {
     'app_version': '6.9.4',
     'platform': 'ios',
@@ -19,4 +17,6 @@ headers = {
     'X-Auth-Token': tinder_token,
 }
 
-host = 'https://api.gotinder.com'
+
+if __name__ == '__main__':
+    pass

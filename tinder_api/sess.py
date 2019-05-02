@@ -1,17 +1,19 @@
 import json
-#testing
-from datetime import datetime
 
 import requests
 
 from tinder_api import config
 from tinder_api import user_model
 
+#test wrapper from sharkbound
+#from tinder_api.utils import wrapper
+
 class Profile(object):
 
     def __init__(self):
         self.api_base = config.host
         self.data = self.get('/profile')
+        #self.test = wrapper.json_to_object(self.get('/profile'))
         self.meta = self.get('/meta')
         self.metav2 = self.get('/v2/meta')
         self.id = self.data['_id']
@@ -28,9 +30,6 @@ class Profile(object):
         self.school_id = [x['id'] for x in self.data['schools']]
         self.jobs = [x for x in self.data['jobs']]
         self.photos = [x['url'] for x in self.data['photos']]
-
-    # write a verification method
-    # returns based on verification sucess/fail
 
     def get(self, url):
         full_url = self.api_base + url
@@ -49,16 +48,13 @@ class Profile(object):
         elif gender == 1:
             return "female"
 
-    # endpoint is /v2/recs/core?locale=en-US
-    # said to be better than normal /user/recs
-    # TODO test
     def yield_usersv2(self):
-        r = self.get('/v2/recs/core?locale=en-US')
-        recs = r['data'] if 'data' in r else []
-        print(len(recs))
-        for rec in recs:
-            pass
-            #yield user_model.UserModel(rec['results']['_id'])
+        while True:
+            r = self.get('/v2/recs/core?locale=en-US')
+            recs = r['data']['results'] if 'data' in r else []
+            for rec in recs:
+                if rec['type'] == 'user':
+                    yield user_model.UserModel(rec['user']['_id'])
 
     def yield_users(self):
         while True:
@@ -69,7 +65,7 @@ class Profile(object):
 
     def yield_matches(self):
         r = self.post('/updates', {"last_activity_date": ""})
-        for match in r['matches']:
+        for match in reversed(r['matches']):
             yield user_model.UserModel(match['_id'])
 
     def list_matches(self):
