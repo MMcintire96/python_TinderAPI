@@ -1,6 +1,4 @@
 import json
-#testing
-from datetime import datetime
 
 import requests
 
@@ -69,7 +67,7 @@ class Profile(object):
 
     def yield_matches(self):
         r = self.post('/updates', {"last_activity_date": ""})
-        for match in r['matches']:
+        for match in reversed(r['matches']):
             yield user_model.UserModel(match['_id'])
 
     def list_matches(self):

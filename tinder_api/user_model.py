@@ -111,35 +111,32 @@ class UserModel(object):
 
     @property
     def jobs(self):
-        if 'jobs' in self.data and len(self.data['jobs']) > 0:
-            try:
-                job_loco = self.data['jobs'][0]['company']['name']
-                job_title = self.data['jobs'][0]['title']['name']
-                return [job_title + ' @ ' + job_loco]
-            except Exception as e:
-                return None
+        if self.data.get('jobs'):
+            job_title, job_loco = None, None
+            if 'company' in self.data['jobs'][0]:
+                job_title = self.data['jobs'][0]['company']['name']
+            if 'title' in self.data['jobs'][0]:
+                job_loco = self.data['jobs'][0]['title']['name']
+            return str(job_title) + ' @ ' + str(job_loco)
         return None
 
     @property
     def school_name(self):
-        if 'schools' in self.data:
-            try:
-                return self.data['schools'][0]['name']
-            except Exception as e:
-                return None
+        for school in self.data.get('schools', []):
+            if school.get('name', None):
+                return school.get('name')
         return None
 
     @property
     def school_id(self):
-        if 'schools' in self.data:
-            try:
-                return self.data['schools'][0]['id']
-            except Exception as e:
-                return None
+        for school in self.data.get('schools', []):
+            if school.get('id', None):
+                return school.get('id')
         return None
 
     @property
     def schools(self):
+        # get this working?
         pass
         #return school_dict
 
@@ -154,12 +151,15 @@ class UserModel(object):
     @property
     def instagram_username(self):
         if 'instagram' in self.data:
-            x = requests.get(self.data['instagram']['photos'][0]['link'])
-            soup = BeautifulSoup(x.text, 'html5lib')
-            meta_str = soup.find('meta',
-                    attrs={'property': 'og:description'})['content']
-            ig_uname = re.findall('@[^\s|\W]*', meta_str)
-            return ig_uname[0][1:]
+            try:
+                x = requests.get(self.data['instagram']['photos'][0]['link'])
+                soup = BeautifulSoup(x.text, 'html5lib')
+                meta_str = soup.find('meta',
+                        attrs={'property': 'og:description'})['content']
+                ig_uname = re.findall('@[^\s|\W]*', meta_str)
+                return ig_uname[0][1:]
+            except Exception as e:
+                return None
         return None
 
     @property
