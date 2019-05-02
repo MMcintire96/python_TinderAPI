@@ -136,9 +136,14 @@ class UserModel(object):
 
     @property
     def schools(self):
-        # get this working?
-        pass
-        #return school_dict
+        sname = self.school_name
+        sid = self.school_id
+        if sname is not None and sid is not None:
+            return sname + " " + sid
+        elif sname is None and sid is not None:
+            return sid
+        else:
+            return sname
 
     @property
     def ping_time(self):
