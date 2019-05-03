@@ -38,7 +38,6 @@ for match in yield_matches():
     match.match_data # contains match data like messages/profile
     match.message('Hello, I use VIM so I am superior to all those other programmers you've dated')
     match.get_messages()
-
 '''
 
 ## Authors/Acknowledgments
