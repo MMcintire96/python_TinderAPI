@@ -37,13 +37,13 @@ for match in yield_matches():
     match.name # all the same endpoints as a normal user
     match.match_data # contains match data like messages/profile
     match.message('Hello, I use VIM so I am superior to all those other programmers you've dated')
-    match.get_messages() 
+    match.get_messages()
 ```
 
 ## Authors/Acknowledgments
 * ** Michael ** - *Initial Work* [MMcintire96](https://github.com/MMcintire96)
-* ** Sharkound ** - *Json Wrapper* [sharkbound](https://github.com/sharkbound)
-* ** wowotek ** - *Pull requests, cleanup and design* [wowotek](https://github.com/wowotek)
+* ** Sharkbound ** - *Json Wrapper* [sharkbound](https://github.com/sharkbound)
+* ** Wowotek ** - *Pull requests, cleanup and design* [wowotek](https://github.com/wowotek)
 
 
 ## TODO
