@@ -1,10 +1,11 @@
-import tinder_api
+import tinder_api.session
 import json
 
-sess = tinder_api.sess.Profile()
+sess = tinder_api.session.Session()
 
-for user in sess.yield_usersv2():
+for user in sess.yield_users():
     print(user.name)
+
 
 
 

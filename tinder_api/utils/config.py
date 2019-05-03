@@ -7,7 +7,7 @@
 #fb_auth_token = fb_auth.get_fb_access_token(fb_email, fb_password)
 #fb_user_id = fb_auth.get_fb_id(fb_auth_token)
 
-tinder_token = "b90943fd-39a1-404d-bfa0-2a4731c36105"
+tinder_token = "YOUR_TOKEN_HERE"
 host = 'https://api.gotinder.com'
 headers = {
     'app_version': '6.9.4',

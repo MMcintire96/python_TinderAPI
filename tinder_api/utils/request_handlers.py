@@ -1,7 +1,7 @@
 import json
 import requests
 
-import config
+from tinder_api.utils import config
 
 def get(url):
     full_url = config.host + url
@@ -17,6 +17,12 @@ def post(url, p_data):
 def delete(url):
     full_url = config.host + url
     r = requests.delete(full_url, headers=config.headers)
+    return r
+
+def put(url, p_data):
+    full_url = config.host + url
+    r = requests.put(full_url, headers=config.headers,
+            data=json.dumps(p_data))
     return r
 
 
