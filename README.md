@@ -12,7 +12,7 @@ Clone this repo, in your project import tinder_api and get to work. The example.
 
 ## Usage
 
-'''
+'''python
 import tinder_api.session
 
 sess = tinder_api.session.Session() # creates a session
