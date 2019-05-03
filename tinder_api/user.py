@@ -41,11 +41,11 @@ class NormalUser(UserModel):
 
     def like(self):
         resp = r.get('/like/{}'.format(self.id))
-        return r['match']
+        return resp['match']
 
     def super_like(self):
         resp = r.post('/like/{}/super'.format(self.id), {})
-        return r['match']
+        return resp['match']
 
     def dislike(self):
         resp = r.post('/pass/{}'.format(self.id))
