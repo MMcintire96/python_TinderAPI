@@ -1,6 +1,6 @@
 import json
-#userman2
 
+#old version of the wrapper -- thanks to https://github.com/sharkbound
 class NoValue:
     __slots__ = ()
 
