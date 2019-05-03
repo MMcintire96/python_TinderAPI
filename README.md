@@ -12,7 +12,7 @@ Clone this repo, in your project import tinder_api and get to work. The example.
 
 ## Usage
 
-'''python
+```
 import tinder_api.session
 
 sess = tinder_api.session.Session() # creates a session
@@ -37,8 +37,8 @@ for match in yield_matches():
     match.name # all the same endpoints as a normal user
     match.match_data # contains match data like messages/profile
     match.message('Hello, I use VIM so I am superior to all those other programmers you've dated')
-    match.get_messages()
-'''
+    match.get_messages() 
+```
 
 ## Authors/Acknowledgments
 * ** Michael ** - *Initial Work* [MMcintire96](https://github.com/MMcintire96)
