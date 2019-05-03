@@ -1,7 +1,9 @@
 import json
+
 import requests
 
 from tinder_api.utils import config
+
 
 def get(url):
     full_url = config.host + url

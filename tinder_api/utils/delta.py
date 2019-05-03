@@ -1,5 +1,6 @@
 from datetime import datetime
 
+
 class DeltaTimer:
     def __init__(self):
         self.marked = 0
