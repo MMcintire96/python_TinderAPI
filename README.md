@@ -48,7 +48,7 @@ for match in sess.yield_matches():
 
 ## TODO
 
-1. Update json_wrapper to the newest version
-2. Test all methods and more endpoints
-3. Update some of the methods in session and user subclasses to the wrapper
-4. Optimize for speed
+1. Move more methods to JsonWrapper
+2. Optimize for speed -- UserController + NormalUser = 1.5s, MatchUser = 3.0s
+3. Maybe add Routes.py
+4. Fix FB Auth Method
