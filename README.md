@@ -1,6 +1,6 @@
 # Tinder api -> Python-bindings
 
-This project contains python bindings for the unoffical tinder api. The tinder api is constantly changing and current libraries are not always up to date. This project is a mix of Pynder's style and Fbessez's endpoints/auth.work is currently in progress but is suitable for non-production projects.
+This project contains python bindings for the unoffical tinder api. The tinder api is constantly changing and current libraries are not always up to date. This project is a mix of Pynder's style and Fbessez's endpoints/auth.work is currently in progress, but suitable for non-production projects.
 
 ## Getting Started
 
