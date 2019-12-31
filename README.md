@@ -2,12 +2,18 @@
 
 This project contains python bindings for the unoffical tinder api. The tinder api is constantly changing and current libraries are not always up to date. This project is a mix of Pynder's style and Fbessez's endpoints/auth. Current a work in progress but is suitable for non-production projects.
 
+## UPDATED AUTHENTICATION - (12/30/19)
+
+Tinder switched away from account-kit. Please use the SMS auth file(updated 12/30) to get your tinder token. I suggest hard coding it into the config.py file after you have obtained it.
+If sms_auth is not working for you, you can find your tinder token using chrome inspector tool. Login to tinder.com, and search it the network tab for a request from the api. Check the request Headers for x-auth-token. Once you copy it, paste it into config.py. See photo.
+![](auth.png)
+
+Please note, as of this update, I only tested through the example, and it all seemed to work. :)
+I have built two other projects off this api, include an auto swiper (tensorflow) and a GUI (Very unfinished). Feel free to check them out if you would like, but clone this repo as it is the most up to date api.
+
 ## Getting Started
 
 You will need to insert your tinder_token in the utils/config.py file. This currently uses SMS auth method for verification as FaceBook auth has changed.
-
-To get your tinder_token run sms_auth.py and enter your phone number registered to your tinder account and the code they send you.
-
 Clone this repo, in your project import tinder_api and get to work. The example.py shows how to get rolling.
 
 ## Usage

@@ -1,14 +1,10 @@
-#from tinder_api.utils import fb_auth
+with open("tinder_api/utils/token.txt", "r") as f:
+    tinder_token = f.read()
 
+# it is best for you to write in the token to save yourself the file I/O
+# especially if you have python byte code off
+tinder_token = "6f170bbe-5517-41eb-ae38-49149f99af1f"
 
-# Depreciated from facebook v2 changes
-#fb_email = "fb_name"
-#fb_password = "fb_pass"
-#fb_auth_token = fb_auth.get_fb_access_token(fb_email, fb_password)
-#fb_user_id = fb_auth.get_fb_id(fb_auth_token)
-
-tinder_token = "b90943fd-39a1-404d-bfa0-2a4731c36105"
-host = 'https://api.gotinder.com'
 headers = {
     'app_version': '6.9.4',
     'platform': 'ios',
@@ -17,6 +13,7 @@ headers = {
     'X-Auth-Token': tinder_token,
 }
 
+host = 'https://api.gotinder.com'
 
 if __name__ == '__main__':
     pass

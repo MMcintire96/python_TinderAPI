@@ -7,17 +7,11 @@ from tinder_api.utils import request_handlers as r
 
 class Session():
     def __init__(self):
-        self.auth = self.auth()
         self.id = self.get_id()
         self.data = r.get('/profile')
         self.meta = r.get('/meta')
         self.metav2 = r.get('/v2/meta')
 
-    def auth(self):
-        # currently not returing correctly, endpoint is missing?
-        """Checks for Authentication"""
-        req = r.post('/auth/login/accountkit', {'token': c.tinder_token, 'id': c.tinder_token, 'client_version': '9.0.1'})
-        return req
 
     def get_id(self):
         """Returns the _id of the Session"""
