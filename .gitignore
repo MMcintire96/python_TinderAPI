@@ -5,3 +5,5 @@ example.py
 *.pyc
 tinder_api/utils/config.py
 tinder_api/utils/config.py
+tinder_api/utils/config.py
+example.py

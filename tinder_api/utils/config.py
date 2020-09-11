@@ -10,7 +10,7 @@ headers = {
     'platform': 'ios',
     'content-type': 'application/json',
     'User-agent': 'Tinder/7.5.3 (iPohone; iOS 10.3.2; Scale/2.00)',
-    'X-Auth-Token': tinder_token,
+    'X-Auth-Token': 'b5210594-06ae-40b6-a3db-05f10308e5bb',
 }
 
 host = 'https://api.gotinder.com'
