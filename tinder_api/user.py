@@ -33,9 +33,8 @@ class UserModel():
             1 : 'spam'
             4 : 'inappropriate photos'
         """
-        resp = r.post('/report/{}'.format(uid),
+        return r.post('/report/{}'.format(uid),
                 {"cause": cause, "text": text})
-        return resp
 
 class NormalUser(UserModel):
     def __init__(self, uid, name, bio, age, birth_date, photos, gender,
@@ -92,14 +91,8 @@ class Message():
         self.data = data
         self.sent = dateutil.parser.parse(data['sent_date'])
         self.body = data['message']
-        if data['from'] == uid:
-            self.sender = name
-        else:
-            self.sender = "Me"
-        if data['to'] == uid:
-            self.to = name
-        else:
-            self.to = "Me"
+        self.sender = name if data['from'] == uid else "Me"
+        self.to = name if data['to'] == uid else "Me"
 
     def like_message(self):
         """Likes a message"""
@@ -118,10 +111,7 @@ class Message():
     def is_liked(self):
         """Returns True if the messages is liked, otherwise False"""
         liked_messages = [x['message_id'] for x in session.Session().get_updates()['liked_messages']]
-        for mess_id  in liked_messages:
-            if mess_id == self.message_id:
-                return True
-        return False
+        return self.message_id in liked_messages
 
     def __unicode__(self):
         return self.body
@@ -144,7 +134,7 @@ class UserController:
 
     def get_data(self):
         """Returns the data of the user"""
-        if self.user_type is 'Me':
+        if self.user_type == 'Me':
             data = r.get('/profile')
             return data
         else:
@@ -180,15 +170,15 @@ class UserController:
         ping_time = self.const.ping_time
         top_song = self._decode_theme_song()
         instagram_photos = [photo.image for photo in self.const.instagram.photos]
-        if self.user_type is 'Normal':
+        if self.user_type == 'Normal':
             return NormalUser(self.id, name, bio, age, birth_date, photos, gender,
                     distance, job_name, job_title, school_name, school_id,
                     ping_time, top_song, instagram_photos)
-        elif self.user_type is 'Match':
+        elif self.user_type == 'Match':
             return MatchUser(self.id, self.match_id, name, bio, age, birth_date, photos, gender,
                     distance, job_name, job_title, school_name, school_id,
                     ping_time, top_song, instagram_photos)
-        elif self.user_type is 'Me':
+        elif self.user_type == 'Me':
             return UserModel(self.id, name, bio, age, birth_date, photos, gender,
                     distance, job_name, job_title, school_name, school_id,
                     ping_time, top_song, instagram_photos)
@@ -208,9 +198,9 @@ class UserController:
     def _decode_gender(self):
         """Converts gender to a human readable format"""
         gender = self.const.gender
-        if gender is 1:
+        if gender == 1:
             return 'female'
-        elif gender is 0:
+        elif gender == 0:
             return 'male'
 
     def _decode_distance(self):
@@ -231,5 +221,4 @@ class UserController:
                 'id': theme_s.id,
                 'artist': theme_s.artists[0].name}
 
-if __name__ == '__main__':
-    pass
+pass
