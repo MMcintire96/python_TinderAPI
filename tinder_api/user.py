@@ -76,6 +76,13 @@ class MatchUser(UserModel):
         """Returns a [] of match data"""
         return [x for x in session.Session().list_matches() if x['_id'] == self.match_id][0]
 
+    def unmatch(self):
+        """Unmatch the user"""
+        resp = r.delete('/user/matches/{}?locale=en'.format(self.match_id))
+        if resp.status_code != 200:
+            return resp
+        return "Error, unable to delete the match"
+        
     def message(self, body):
         """Messages the user"""
         resp = r.post('/user/matches/{}'.format(self.match_id),
